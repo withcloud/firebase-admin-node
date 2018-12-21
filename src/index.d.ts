@@ -15,7 +15,6 @@
  */
 
 import {Bucket} from '@google-cloud/storage';
-import * as _firestore from '@google-cloud/firestore';
 import {Agent} from 'http';
 
 declare namespace admin {
@@ -59,9 +58,7 @@ declare namespace admin {
   function app(name?: string): admin.app.App;
   function auth(app?: admin.app.App): admin.auth.Auth;
   function database(app?: admin.app.App): admin.database.Database;
-  function messaging(app?: admin.app.App): admin.messaging.Messaging;
   function storage(app?: admin.app.App): admin.storage.Storage;
-  function firestore(app?: admin.app.App): admin.firestore.Firestore;
   function instanceId(app?: admin.app.App): admin.instanceId.InstanceId;
   function projectManagement(app?: admin.app.App): admin.projectManagement.ProjectManagement;
   function initializeApp(options?: admin.AppOptions, name?: string): admin.app.App;
@@ -74,9 +71,7 @@ declare namespace admin.app {
 
     auth(): admin.auth.Auth;
     database(url?: string): admin.database.Database;
-    firestore(): admin.firestore.Firestore;
     instanceId(): admin.instanceId.InstanceId;
-    messaging(): admin.messaging.Messaging;
     projectManagement(): admin.projectManagement.ProjectManagement;
     storage(): admin.storage.Storage;
     delete(): Promise<void>;
@@ -634,26 +629,6 @@ declare namespace admin.storage {
     app: admin.app.App;
     bucket(name?: string): Bucket;
   }
-}
-
-declare namespace admin.firestore {
-  export import CollectionReference = _firestore.CollectionReference;
-  export import DocumentData = _firestore.DocumentData;
-  export import DocumentReference = _firestore.DocumentReference;
-  export import DocumentSnapshot = _firestore.DocumentSnapshot;
-  export import FieldPath = _firestore.FieldPath;
-  export import FieldValue = _firestore.FieldValue;
-  export import Firestore = _firestore.Firestore;
-  export import GeoPoint = _firestore.GeoPoint;
-  export import Query = _firestore.Query;
-  export import QueryDocumentSnapshot = _firestore.QueryDocumentSnapshot;
-  export import QuerySnapshot = _firestore.QuerySnapshot;
-  export import Timestamp = _firestore.Timestamp;
-  export import Transaction = _firestore.Transaction;
-  export import WriteBatch = _firestore.WriteBatch;
-  export import WriteResult = _firestore.WriteResult;
-
-  export import setLogFunction = _firestore.setLogFunction;
 }
 
 declare namespace admin.instanceId {
