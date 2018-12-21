@@ -1,5 +1,5 @@
 {
-  "name": "now-firebase-admin",
+  "name": "now-firebase-admin-auth",
   "version": "6.4.1",
   "description": "Firebase admin SDK for Node.js",
   "author": "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
@@ -53,14 +53,9 @@
   "types": "./lib/index.d.ts",
   "dependencies": {
     "@firebase/app": "^0.3.4",
-    "@firebase/database": "^0.3.6",
     "@types/node": "^8.0.53",
     "jsonwebtoken": "8.1.0",
     "node-forge": "0.7.4"
-  },
-  "optionalDependencies": {
-    "@google-cloud/storage": "^1.6.0",
-    "@types/google-cloud__storage": "^1.7.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^2.0.0",

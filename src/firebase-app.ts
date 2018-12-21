@@ -22,9 +22,6 @@ import {FirebaseNamespaceInternals} from './firebase-namespace';
 import {AppErrorCodes, FirebaseAppError} from './utils/error';
 
 import {Auth} from './auth/auth';
-import {Storage} from './storage/storage';
-import {Database} from '@firebase/database';
-import {DatabaseService} from './database/database';
 import {InstanceId} from './instance-id/instance-id';
 import {ProjectManagement} from './project-management/project-management';
 
@@ -290,31 +287,6 @@ export class FirebaseApp {
     return this.ensureService_('auth', () => {
       const authService: typeof Auth = require('./auth/auth').Auth;
       return new authService(this);
-    });
-  }
-
-  /**
-   * Returns the Database service for the specified URL, and the current app.
-   *
-   * @return {Database} The Database service instance of this app.
-   */
-  public database(url?: string): Database {
-    const service: DatabaseService = this.ensureService_('database', () => {
-      const dbService: typeof DatabaseService = require('./database/database').DatabaseService;
-      return new dbService(this);
-    });
-    return service.getDatabase(url);
-  }
-
-  /**
-   * Returns the Storage service instance associated with this app.
-   *
-   * @return {Storage} The Storage service instance of this app.
-   */
-  public storage(): Storage {
-    return this.ensureService_('storage', () => {
-      const storageService: typeof Storage = require('./storage/storage').Storage;
-      return new storageService(this);
     });
   }
 
