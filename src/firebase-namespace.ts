@@ -28,10 +28,8 @@ import {
 } from './auth/credential';
 
 import {Auth} from './auth/auth';
-import {Messaging} from './messaging/messaging';
 import {Storage} from './storage/storage';
 import {Database} from '@firebase/database';
-import {Firestore} from '@google-cloud/firestore';
 import {InstanceId} from './instance-id/instance-id';
 import {ProjectManagement} from './project-management/project-management';
 
@@ -344,18 +342,6 @@ export class FirebaseNamespace {
   }
 
   /**
-   * Gets the `Messaging` service namespace. The returned namespace can be used to get the
-   * `Messaging` service for the default app or an explicitly specified app.
-   */
-  get messaging(): FirebaseServiceNamespace<Messaging> {
-    const fn: FirebaseServiceNamespace<Messaging> = (app?: FirebaseApp) => {
-      return this.ensureApp(app).messaging();
-    };
-    const messaging = require('./messaging/messaging').Messaging;
-    return Object.assign(fn, {Messaging: messaging});
-  }
-
-  /**
    * Gets the `Storage` service namespace. The returned namespace can be used to get the
    * `Storage` service for the default app or an explicitly specified app.
    */
@@ -365,17 +351,6 @@ export class FirebaseNamespace {
     };
     const storage = require('./storage/storage').Storage;
     return Object.assign(fn, {Storage: storage});
-  }
-
-  /**
-   * Gets the `Firestore` service namespace. The returned namespace can be used to get the
-   * `Firestore` service for the default app or an explicitly specified app.
-   */
-  get firestore(): FirebaseServiceNamespace<Firestore> {
-    const fn: FirebaseServiceNamespace<Firestore> = (app?: FirebaseApp) => {
-      return this.ensureApp(app).firestore();
-    };
-    return Object.assign(fn, require('@google-cloud/firestore'));
   }
 
   /**

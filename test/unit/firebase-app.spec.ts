@@ -35,9 +35,7 @@ import {FirebaseApp, FirebaseAccessToken} from '../../src/firebase-app';
 import {FirebaseNamespace, FirebaseNamespaceInternals, FIREBASE_CONFIG_VAR} from '../../src/firebase-namespace';
 
 import {Auth} from '../../src/auth/auth';
-import {Messaging} from '../../src/messaging/messaging';
 import {Storage} from '../../src/storage/storage';
-import {Firestore} from '@google-cloud/firestore';
 import {Database} from '@firebase/database';
 import {InstanceId} from '../../src/instance-id/instance-id';
 import {ProjectManagement} from '../../src/project-management/project-management';
@@ -371,32 +369,6 @@ describe('FirebaseApp', () => {
     });
   });
 
-  describe('messaging()', () => {
-    it('should throw if the app has already been deleted', () => {
-      const app = firebaseNamespace.initializeApp(mocks.appOptions, mocks.appName);
-
-      return app.delete().then(() => {
-        expect(() => {
-          return app.messaging();
-        }).to.throw(`Firebase app named "${mocks.appName}" has already been deleted.`);
-      });
-    });
-
-    it('should return the Messaging namespace', () => {
-      const app = firebaseNamespace.initializeApp(mocks.appOptions, mocks.appName);
-
-      const fcmNamespace: Messaging = app.messaging();
-      expect(fcmNamespace).not.be.null;
-    });
-
-    it('should return a cached version of Messaging on subsequent calls', () => {
-      const app = firebaseNamespace.initializeApp(mocks.appOptions, mocks.appName);
-      const serviceNamespace1: Messaging = app.messaging();
-      const serviceNamespace2: Messaging = app.messaging();
-      expect(serviceNamespace1).to.deep.equal(serviceNamespace2);
-    });
-  });
-
   describe('database()', () => {
     afterEach(() => {
       try {
@@ -503,32 +475,6 @@ describe('FirebaseApp', () => {
       const serviceNamespace1: Storage = app.storage();
       const serviceNamespace2: Storage = app.storage();
       expect(serviceNamespace1).to.deep.equal(serviceNamespace2);
-    });
-  });
-
-  describe('firestore()', () => {
-    it('should throw if the app has already been deleted', () => {
-      const app = firebaseNamespace.initializeApp(mocks.appOptions, mocks.appName);
-
-      return app.delete().then(() => {
-        expect(() => {
-          return app.firestore();
-        }).to.throw(`Firebase app named "${mocks.appName}" has already been deleted.`);
-      });
-    });
-
-    it('should return the Firestore client', () => {
-      const app = firebaseNamespace.initializeApp(mocks.appOptions, mocks.appName);
-
-      const fs: Firestore = app.firestore();
-      expect(fs).not.be.null;
-    });
-
-    it('should return a cached version of Firestore on subsequent calls', () => {
-      const app = firebaseNamespace.initializeApp(mocks.appOptions, mocks.appName);
-      const service1: Firestore = app.firestore();
-      const service2: Firestore = app.firestore();
-      expect(service1).to.deep.equal(service2);
     });
   });
 

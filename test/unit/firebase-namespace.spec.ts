@@ -38,15 +38,7 @@ import {
   Reference,
   ServerValue,
 } from '@firebase/database';
-import {Messaging} from '../../src/messaging/messaging';
 import {Storage} from '../../src/storage/storage';
-import {
-  Firestore,
-  FieldPath,
-  FieldValue,
-  GeoPoint,
-  setLogFunction,
-} from '@google-cloud/firestore';
 import {InstanceId} from '../../src/instance-id/instance-id';
 import {ProjectManagement} from '../../src/project-management/project-management';
 
@@ -445,37 +437,6 @@ describe('FirebaseNamespace', () => {
     });
   });
 
-  describe('#messaging()', () => {
-    it('should throw when called before initializing an app', () => {
-      expect(() => {
-        firebaseNamespace.messaging();
-      }).to.throw(DEFAULT_APP_NOT_FOUND);
-    });
-
-    it('should throw when default app is not initialized', () => {
-      firebaseNamespace.initializeApp(mocks.appOptions, 'testApp');
-      expect(() => {
-        firebaseNamespace.messaging();
-      }).to.throw(DEFAULT_APP_NOT_FOUND);
-    });
-
-    it('should return a valid namespace when the default app is initialized', () => {
-      const app: FirebaseApp = firebaseNamespace.initializeApp(mocks.appOptions);
-      const fcm: Messaging = firebaseNamespace.messaging();
-      expect(fcm.app).to.be.deep.equal(app);
-    });
-
-    it('should return a valid namespace when the named app is initialized', () => {
-      const app: FirebaseApp = firebaseNamespace.initializeApp(mocks.appOptions, 'testApp');
-      const fcm: Messaging = firebaseNamespace.messaging(app);
-      expect(fcm.app).to.be.deep.equal(app);
-    });
-
-    it('should return a reference to Messaging type', () => {
-      expect(firebaseNamespace.messaging.Messaging).to.be.deep.equal(Messaging);
-    });
-  });
-
   describe('#storage()', () => {
     it('should throw when called before initializing an app', () => {
       expect(() => {
@@ -504,53 +465,6 @@ describe('FirebaseNamespace', () => {
 
     it('should return a reference to Storage type', () => {
       expect(firebaseNamespace.storage.Storage).to.be.deep.equal(Storage);
-    });
-  });
-
-  describe('#firestore()', () => {
-    it('should throw when called before initializing an app', () => {
-      expect(() => {
-        firebaseNamespace.firestore();
-      }).to.throw(DEFAULT_APP_NOT_FOUND);
-    });
-
-    it('should throw when default app is not initialized', () => {
-      firebaseNamespace.initializeApp(mocks.appOptions, 'testApp');
-      expect(() => {
-        firebaseNamespace.firestore();
-      }).to.throw(DEFAULT_APP_NOT_FOUND);
-    });
-
-    it('should return a valid namespace when the default app is initialized', () => {
-      const app: FirebaseApp = firebaseNamespace.initializeApp(mocks.appOptions);
-      const fs: Firestore = firebaseNamespace.firestore();
-      expect(fs).to.not.be.null;
-    });
-
-    it('should return a valid namespace when the named app is initialized', () => {
-      const app: FirebaseApp = firebaseNamespace.initializeApp(mocks.appOptions, 'testApp');
-      const fs: Firestore = firebaseNamespace.firestore(app);
-      expect(fs).to.not.be.null;
-    });
-
-    it('should return a reference to Firestore type', () => {
-      expect(firebaseNamespace.firestore.Firestore).to.be.deep.equal(Firestore);
-    });
-
-    it('should return a reference to FieldPath type', () => {
-      expect(firebaseNamespace.firestore.FieldPath).to.be.deep.equal(FieldPath);
-    });
-
-    it('should return a reference to FieldValue type', () => {
-      expect(firebaseNamespace.firestore.FieldValue).to.be.deep.equal(FieldValue);
-    });
-
-    it('should return a reference to GeoPoint type', () => {
-      expect(firebaseNamespace.firestore.GeoPoint).to.be.deep.equal(GeoPoint);
-    });
-
-    it('should return a reference to setLogFunction', () => {
-      expect(firebaseNamespace.firestore.setLogFunction).to.be.deep.equal(setLogFunction);
     });
   });
 

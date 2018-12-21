@@ -22,12 +22,9 @@ import {FirebaseNamespaceInternals} from './firebase-namespace';
 import {AppErrorCodes, FirebaseAppError} from './utils/error';
 
 import {Auth} from './auth/auth';
-import {Messaging} from './messaging/messaging';
 import {Storage} from './storage/storage';
 import {Database} from '@firebase/database';
 import {DatabaseService} from './database/database';
-import {Firestore} from '@google-cloud/firestore';
-import {FirestoreService} from './firestore/firestore';
 import {InstanceId} from './instance-id/instance-id';
 import {ProjectManagement} from './project-management/project-management';
 
@@ -310,18 +307,6 @@ export class FirebaseApp {
   }
 
   /**
-   * Returns the Messaging service instance associated with this app.
-   *
-   * @return {Messaging} The Messaging service instance of this app.
-   */
-  public messaging(): Messaging {
-    return this.ensureService_('messaging', () => {
-      const messagingService: typeof Messaging = require('./messaging/messaging').Messaging;
-      return new messagingService(this);
-    });
-  }
-
-  /**
    * Returns the Storage service instance associated with this app.
    *
    * @return {Storage} The Storage service instance of this app.
@@ -331,14 +316,6 @@ export class FirebaseApp {
       const storageService: typeof Storage = require('./storage/storage').Storage;
       return new storageService(this);
     });
-  }
-
-  public firestore(): Firestore {
-    const service: FirestoreService = this.ensureService_('firestore', () => {
-      const firestoreService: typeof FirestoreService = require('./firestore/firestore').FirestoreService;
-      return new firestoreService(this);
-    });
-    return service.client;
   }
 
   /**

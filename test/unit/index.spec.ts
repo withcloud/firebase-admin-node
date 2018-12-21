@@ -38,14 +38,8 @@ import './auth/action-code-settings-builder.spec';
 // Database
 import './database/database.spec';
 
-// Messaging
-import './messaging/messaging.spec';
-
 // Storage
 import './storage/storage.spec';
-
-// Firestore
-import './firestore/firestore.spec';
 
 // InstanceId
 import './instance-id/instance-id.spec';
