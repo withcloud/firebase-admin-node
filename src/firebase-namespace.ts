@@ -28,6 +28,7 @@ import {
 } from './auth/credential';
 
 import {Auth} from './auth/auth';
+import {Database} from '@firebase/database';
 import {InstanceId} from './instance-id/instance-id';
 import {ProjectManagement} from './project-management/project-management';
 
@@ -326,6 +327,17 @@ export class FirebaseNamespace {
     };
     const auth = require('./auth/auth').Auth;
     return Object.assign(fn, {Auth: auth});
+  }
+
+  /**
+   * Gets the `Database` service namespace. The returned namespace can be used to get the
+   * `Database` service for the default app or an explicitly specified app.
+   */
+  get database(): FirebaseServiceNamespace<Database> {
+    const fn: FirebaseServiceNamespace<Database> = (app?: FirebaseApp) => {
+      return this.ensureApp(app).database();
+    };
+    return Object.assign(fn, require('@firebase/database'));
   }
 
   /**

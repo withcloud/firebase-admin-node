@@ -161,6 +161,29 @@ describe('Firebase', () => {
     });
   });
 
+  describe('#database()', () => {
+    it('should throw if the app has not be initialized', () => {
+      expect(() => {
+        return firebaseAdmin.database();
+      }).to.throw('The default Firebase app does not exist.');
+    });
+
+    it('should throw given no databaseURL key when initializing the app', () => {
+      firebaseAdmin.initializeApp(mocks.appOptionsNoDatabaseUrl);
+
+      expect(() => {
+        firebaseAdmin.database();
+      }).to.throw('Can\'t determine Firebase Database URL');
+    });
+
+    it('should return the database service', () => {
+      firebaseAdmin.initializeApp(mocks.appOptions);
+      expect(() => {
+        return firebaseAdmin.database();
+      }).not.to.throw();
+    });
+  });
+
   describe('#auth', () => {
     it('should throw if the app has not be initialized', () => {
       expect(() => {

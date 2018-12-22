@@ -35,6 +35,9 @@ import './auth/auth-api-request.spec';
 import './auth/user-import-builder.spec';
 import './auth/action-code-settings-builder.spec';
 
+// Database
+import './database/database.spec';
+
 // InstanceId
 import './instance-id/instance-id.spec';
 import './instance-id/instance-id-request.spec';
