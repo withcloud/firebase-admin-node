@@ -1,6 +1,6 @@
 {
   "name": "now-firebase-admin-auth",
-  "version": "6.4.3",
+  "version": "6.5.1",
   "description": "Firebase admin SDK for Node.js",
   "author": "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
   "license": "Apache-2.0",
