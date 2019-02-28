@@ -3,6 +3,10 @@
 > 更新自 6.5.1
 >
 > https://github.com/firebase/firebase-admin-node/tree/2952450c48cfc71319bb32e0cd701195e1012f38
+>
+> 參考
+>
+> https://github.com/leaniterationsllc/firebase-admin-node/commit/98bfee9f9d3d5922f29b62a1b1cda01a4a71ef81
 
 
 ## Why?
