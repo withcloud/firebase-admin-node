@@ -1,88 +1,34 @@
-[![Build Status](https://travis-ci.org/firebase/firebase-admin-node.svg?branch=master)](https://travis-ci.org/firebase/firebase-admin-node)
+# 🛠️ firebase-admin-node
 
-# Firebase Admin Node.js SDK
-
-
-## Table of Contents
-
- * [Overview](#overview)
- * [Installation](#installation)
- * [Contributing](#contributing)
- * [Documentation](#documentation)
- * [Supported Environments](#supported-environments)
- * [Acknowledgments](#acknowledgments)
- * [License](#license)
+> 更新自 6.5.1
+>
+> https://github.com/firebase/firebase-admin-node/tree/2952450c48cfc71319bb32e0cd701195e1012f38
 
 
-## Overview
+## Why?
 
-[Firebase](https://firebase.google.com) provides the tools and infrastructure
-you need to develop your app, grow your user base, and earn money. The Firebase
-Admin Node.js SDK enables access to Firebase services from privileged environments
-(such as servers or cloud) in Node.js.
+因為 NOW v2 Lambda 的 size 越少越好，所以這邊做的是輕量化的處理
 
-For more information, visit the
-[Firebase Admin SDK setup guide](https://firebase.google.com/docs/admin/setup/).
+分兩個 branch
 
 
-## Installation
+- **auth**: 只保留 auth。
+- **database**: 只保留 auth 和 database。
 
-The Firebase Admin Node.js SDK is available on npm as `firebase-admin`:
 
-```bash
-$ npm install --save firebase-admin
+## How to use
+
+auth only
+
+
+```
+yarn add now-firebase-admin-auth
 ```
 
-To use the module in your application, `require` it from any JavaScript file:
+auth and database
 
-```js
-var admin = require("firebase-admin");
+
+```
+yarn add now-firebase-admin-database
 ```
 
-If you are using ES2015, you can `import` the module instead:
-
-```js
-import * as admin from "firebase-admin";
-```
-
-
-## Contributing
-
-Please refer to the [CONTRIBUTING page](./CONTRIBUTING.md) for more information
-about how you can contribute to this project. We welcome bug reports, feature
-requests, code review feedback, and also pull requests.
-
-
-## Supported Environments
-
-We support Node.js 6.0 and higher. Please note that the Admin SDK should only
-be used in server-side/back-end environments controlled by the app developer.
-This includes most server and serverless platforms (both on-premise and in
-the cloud). It is not recommended to use the Admin SDK in client-side
-environments.
-
-
-## Documentation
-
-* [Setup Guide](https://firebase.google.com/docs/admin/setup/)
-* [Database Guide](https://firebase.google.com/docs/database/admin/start/)
-* [Authentication Guide](https://firebase.google.com/docs/auth/admin/)
-* [Cloud Messaging Guide](https://firebase.google.com/docs/cloud-messaging/admin/)
-* [API Reference](https://firebase.google.com/docs/reference/admin/node/)
-* [Release Notes](https://firebase.google.com/support/release-notes/admin/node/)
-
-
-## Acknowledgments
-
-Thanks to the team at [Casetext](https://casetext.com/) for transferring
-ownership of the `firebase-admin` npm module over to the Firebase team
-and for their longtime use and support of the Firebase platform.
-
-
-## License
-
-Firebase Admin Node.js SDK is licensed under the
-[Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
-
-Your use of Firebase is governed by the
-[Terms of Service for Firebase Services](https://firebase.google.com/terms/).
